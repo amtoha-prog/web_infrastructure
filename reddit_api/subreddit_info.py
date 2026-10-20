@@ -24,5 +24,8 @@ def get_rules(subreddit):
   data = get_data("https://www.reddit.com/r/" + subreddit + "/about/rules.json")
   return data["rules"]
 
-
+# Function to get the newest posts in a subreddit
+def get_newest(subreddit):
+  data = get_data("https://www.reddit.com/r/" + subreddit + "/new.json?limit=10")
+  return data["data"]["children"]
 
