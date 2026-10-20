@@ -29,3 +29,23 @@ def get_newest(subreddit):
   data = get_data("https://www.reddit.com/r/" + subreddit + "/new.json?limit=10")
   return data["data"]["children"]
 
+# Main function to display subreddit information, rules, and newest posts
+def main():
+  about = get_about(SUBREDDIT)
+  rules = get_rules(SUBREDDIT)
+  newest = get_newest(SUBREDDIT)
+
+  print("Subreddit name:", about["display_name"])
+  print("Subreddit description:", about["description"])
+  print("Number of subscribers:", about["subscribers"])
+
+  print("\nRules:")
+  for rule in rules:
+    print("-", rule["short_name"])
+
+  print("\n10 Newest posts:")
+  for post in newest:
+    print ("-", post["data"]["title"], "by", post["data"]["author"])
+
+
+main()
